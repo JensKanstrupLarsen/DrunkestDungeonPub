@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Socket.IO chat</title>
+  </head>
+  <body>
+    <h1 id="themessage">
+		Lets go
+    </h1>
+    <button id="boom">Press me</button>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+
+      const form = document.getElementById('boom');
+      const themessage = document.getElementById('themessage');
+
+      form.addEventListener('click', (e) => {
+        e.preventDefault();
+        socket.emit('chat message', "badda bing");
+      });
+
+      socket.on('chat message', (msg) => {
+        window.alert("ey, what?????");
+        themessage.innerHTML += msg;
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8" name = "theme-color" content = "#101010">
+        <title>Welcome...</title>
+      	<link rel="stylesheet" type="text/css" href="css/client.css"/>
+    </head>
+    <body>
+        <div id="lobbyScreen" style="margin:auto;font-size:50px">
+            <div style="margin:auto;margin-top:50%;text-align:center">
+                <label style="font-size:100px">Name:</label>
+                <input type="text" id="playerName" style="width:400px;font-size:100px;font-family:ddfont"/>
+            </div>
+            <br>
+            <div style="margin:auto;text-align:center">
+                <label style="font-size:100px">Room code:</label>
+                <input type="text" id="roomCode" style="width:150px;font-size:100px;font-family:ddfont"/>
+            </div>
+            <br>
+            <input type="button" class="ddButton" id="joinButton" value="Join game" style="width:50%;margin:auto;font-size:100px;"/>
+            <br>
+            <h2 id="lobbyStatus"></h2>
+        </div>
+        <div id="draftScreen" style="display:none">
+            <h2 id="draftStatus" style="margin:auto;text-align:center;margin-top:50%;font-size:100px"></h2><br>
+            <img id="draftOption1" alt="Option 1" style="display:none" onclick="draftHero(1)">
+            <img id="draftOption2" alt="Option 2" style="display:none" onclick="draftHero(2)">
+        </div>
+
+        <!-- Room -->
+        <img id="img:room_entrance" src="images/mapicons/room_entrance.png" style="display:none"/>
+        <img id="img:room_unknown"  src="images/mapicons/room_unknown.png" style="display:none"/>
+        <img id="img:room_empty"    src="images/mapicons/room_empty.png" style="display:none"/>
+        <img id="img:room_battle"   src="images/mapicons/room_battle.png" style="display:none"/>
+        <img id="img:room_treasure" src="images/mapicons/room_treasure.png" style="display:none"/>
+        <img id="img:room_altar"   src="images/mapicons/room_altar.png" style="display:none"/>
+        <img id="img:room_key"      src="images/mapicons/room_key.png" style="display:none"/>
+        <img id="img:room_boss"     src="images/mapicons/room_boss.png" style="display:none"/>
+        <img id="img:map_indicator" src="images/mapicons/indicator.png" style="display:none"/>
+
+        <!-- Corridor -->
+        <img id="img:corridor_unknown" src="images/mapicons/hall_dim.png" style="display:none"/>
+        <img id="img:corridor_empty"   src="images/mapicons/hall_clear.png" style="display:none"/>
+        <img id="img:corridor_trap"    src="images/mapicons/marker_trap.png" style="display:none"/>
+        <img id="img:corridor_battle"  src="images/mapicons/marker_battle.png" style="display:none"/>
+        <img id="img:corridor_curio"   src="images/mapicons/marker_curio.png" style="display:none"/>
+        <img id="img:corridor_special" src="images/mapicons/marker_secret.png" style="display:none"/>
+
+        <img id="img:icon_swap_ability" src="images/abilityicons/ability_move.png" style="display:none" />
+
+        <!-- Heroes -->
+            <!-- Antiquarian -->
+            <img id="img:antiquarian_idle" src="images/heroes/antiquarian/idle.png" style="display:none"/>
+            <img id="img:antiquarian_ability1" src="images/heroes/antiquarian/ability1.png" style="display:none"/>
+            <img id="img:antiquarian_ability2" src="images/heroes/antiquarian/ability2.png" style="display:none"/>
+            <img id="img:antiquarian_ability3" src="images/heroes/antiquarian/ability3.png" style="display:none"/>
+            <img id="img:antiquarian_defend" src="images/heroes/antiquarian/defend.png" style="display:none"/>
+            <img id="img:icon_antiquarian_passive" src="images/abilityicons/antiquarian/passive.png" style="display:none" />
+            <img id="img:icon_antiquarian_ability1" src="images/abilityicons/antiquarian/ability1.png" style="display:none" />
+            <img id="img:icon_antiquarian_ability2" src="images/abilityicons/antiquarian/ability2.png" style="display:none"/>
+            <img id="img:icon_antiquarian_ability3" src="images/abilityicons/antiquarian/ability3.png" style="display:none"/>
+
+            <!-- Bounty Hunter -->
+            <img id="img:bountyhunter_idle" src="images/heroes/bountyhunter/idle.png" style="display:none"/>
+            <img id="img:bountyhunter_ability1" src="images/heroes/bountyhunter/ability1.png" style="display:none"/>
+            <img id="img:bountyhunter_ability2" src="images/heroes/bountyhunter/ability2.png" style="display:none"/>
+            <img id="img:bountyhunter_ability3" src="images/heroes/bountyhunter/ability3.png" style="display:none"/>
+            <img id="img:bountyhunter_defend" src="images/heroes/bountyhunter/defend.png" style="display:none"/>
+            <img id="img:icon_bountyhunter_passive" src="images/abilityicons/bountyhunter/passive.png" style="display:none" />
+            <img id="img:icon_bountyhunter_ability1" src="images/abilityicons/bountyhunter/ability1.png" style="display:none" />
+            <img id="img:icon_bountyhunter_ability2" src="images/abilityicons/bountyhunter/ability2.png" style="display:none"/>
+            <img id="img:icon_bountyhunter_ability3" src="images/abilityicons/bountyhunter/ability3.png" style="display:none"/>
+
+            <!-- Crusader -->
+            <img id="img:crusader_idle" src="images/heroes/crusader/idle.png" style="display:none"/>
+            <img id="img:crusader_ability1" src="images/heroes/crusader/ability1.png" style="display:none"/>
+            <img id="img:crusader_ability2" src="images/heroes/crusader/ability2.png" style="display:none"/>
+            <img id="img:crusader_ability3" src="images/heroes/crusader/ability3.png" style="display:none"/>
+            <img id="img:crusader_defend" src="images/heroes/crusader/defend.png" style="display:none"/>
+            <img id="img:icon_crusader_passive" src="images/abilityicons/crusader/passive.png" style="display:none" />
+            <img id="img:icon_crusader_ability1" src="images/abilityicons/crusader/ability1.png" style="display:none" />
+            <img id="img:icon_crusader_ability2" src="images/abilityicons/crusader/ability2.png" style="display:none"/>
+            <img id="img:icon_crusader_ability3" src="images/abilityicons/crusader/ability3.png" style="display:none"/>
+
+            <!-- Grave Robber -->
+            <img id="img:graverobber_idle" src="images/heroes/graverobber/idle.png" style="display:none"/>
+            <img id="img:graverobber_ability1" src="images/heroes/graverobber/ability1.png" style="display:none"/>
+            <img id="img:graverobber_ability2" src="images/heroes/graverobber/ability2.png" style="display:none"/>
+            <img id="img:graverobber_ability3" src="images/heroes/graverobber/ability3.png" style="display:none"/>
+            <img id="img:graverobber_defend" src="images/heroes/graverobber/defend.png" style="display:none"/>
+            <img id="img:icon_graverobber_passive" src="images/abilityicons/graverobber/passive.png" style="display:none" />
+            <img id="img:icon_graverobber_ability1" src="images/abilityicons/graverobber/ability1.png" style="display:none" />
+            <img id="img:icon_graverobber_ability2" src="images/abilityicons/graverobber/ability2.png" style="display:none"/>
+            <img id="img:icon_graverobber_ability3" src="images/abilityicons/graverobber/ability3.png" style="display:none"/>
+
+            <!-- Hellion -->
+            <img id="img:hellion_idle" src="images/heroes/hellion/idle.png" style="display:none"/>
+            <img id="img:hellion_ability1" src="images/heroes/hellion/ability1.png" style="display:none"/>
+            <img id="img:hellion_ability2" src="images/heroes/hellion/ability2.png" style="display:none"/>
+            <img id="img:hellion_ability3" src="images/heroes/hellion/ability3.png" style="display:none"/>
+            <img id="img:hellion_defend" src="images/heroes/hellion/defend.png" style="display:none"/>
+            <img id="img:icon_hellion_passive" src="images/abilityicons/hellion/passive.png" style="display:none" />
+            <img id="img:icon_hellion_ability1" src="images/abilityicons/hellion/ability1.png" style="display:none" />
+            <img id="img:icon_hellion_ability2" src="images/abilityicons/hellion/ability2.png" style="display:none"/>
+            <img id="img:icon_hellion_ability3" src="images/abilityicons/hellion/ability3.png" style="display:none"/>
+
+            <!-- Jester -->
+            <img id="img:jester_idle" src="images/heroes/jester/idle.png" style="display:none"/>
+            <img id="img:jester_ability1" src="images/heroes/jester/ability1.png" style="display:none"/>
+            <img id="img:jester_ability2" src="images/heroes/jester/ability2.png" style="display:none"/>
+            <img id="img:jester_ability3" src="images/heroes/jester/ability3.png" style="display:none"/>
+            <img id="img:jester_defend" src="images/heroes/jester/defend.png" style="display:none"/>
+            <img id="img:icon_jester_passive" src="images/abilityicons/jester/passive.png" style="display:none" />
+            <img id="img:icon_jester_ability1" src="images/abilityicons/jester/ability1.png" style="display:none" />
+            <img id="img:icon_jester_ability2" src="images/abilityicons/jester/ability2.png" style="display:none"/>
+            <img id="img:icon_jester_ability3" src="images/abilityicons/jester/ability3.png" style="display:none"/>
+
+            <!-- Leper -->
+            <img id="img:leper_idle" src="images/heroes/leper/idle.png" style="display:none"/>
+            <img id="img:leper_ability1" src="images/heroes/leper/ability1.png" style="display:none"/>
+            <img id="img:leper_ability2" src="images/heroes/leper/ability2.png" style="display:none"/>
+            <img id="img:leper_ability3" src="images/heroes/leper/ability3.png" style="display:none"/>
+            <img id="img:leper_defend" src="images/heroes/leper/defend.png" style="display:none"/>
+            <img id="img:icon_leper_passive" src="images/abilityicons/leper/passive.png" style="display:none" />
+            <img id="img:icon_leper_ability1" src="images/abilityicons/leper/ability1.png" style="display:none" />
+            <img id="img:icon_leper_ability2" src="images/abilityicons/leper/ability2.png" style="display:none"/>
+            <img id="img:icon_leper_ability3" src="images/abilityicons/leper/ability3.png" style="display:none"/>
+
+            <!-- Man-at-Arms -->
+            <img id="img:manatarms_idle" src="images/heroes/manatarms/idle.png" style="display:none"/>
+            <img id="img:manatarms_ability1" src="images/heroes/manatarms/ability1.png" style="display:none"/>
+            <img id="img:manatarms_ability2" src="images/heroes/manatarms/ability2.png" style="display:none"/>
+            <img id="img:manatarms_ability3" src="images/heroes/manatarms/ability3.png" style="display:none"/>
+            <img id="img:manatarms_defend" src="images/heroes/manatarms/defend.png" style="display:none"/>
+            <img id="img:icon_manatarms_passive" src="images/abilityicons/manatarms/passive.png" style="display:none" />
+            <img id="img:icon_manatarms_ability1" src="images/abilityicons/manatarms/ability1.png" style="display:none" />
+            <img id="img:icon_manatarms_ability2" src="images/abilityicons/manatarms/ability2.png" style="display:none"/>
+            <img id="img:icon_manatarms_ability3" src="images/abilityicons/manatarms/ability3.png" style="display:none"/>
+
+            <!-- Occultist -->
+            <img id="img:occultist_idle" src="images/heroes/occultist/idle.png" style="display:none"/>
+            <img id="img:occultist_ability1" src="images/heroes/occultist/ability1.png" style="display:none"/>
+            <img id="img:occultist_ability2" src="images/heroes/occultist/ability2.png" style="display:none"/>
+            <img id="img:occultist_ability3" src="images/heroes/occultist/ability3.png" style="display:none"/>
+            <img id="img:occultist_defend" src="images/heroes/occultist/defend.png" style="display:none"/>
+            <img id="img:icon_occultist_passive" src="images/abilityicons/occultist/passive.png" style="display:none" />
+            <img id="img:icon_occultist_ability1" src="images/abilityicons/occultist/ability1.png" style="display:none" />
+            <img id="img:icon_occultist_ability2" src="images/abilityicons/occultist/ability2.png" style="display:none"/>
+            <img id="img:icon_occultist_ability3" src="images/abilityicons/occultist/ability3.png" style="display:none"/>
+
+            <!-- Plague Doctor -->
+            <img id="img:plaguedoctor_idle" src="images/heroes/plaguedoctor/idle.png" style="display:none"/>
+            <img id="img:plaguedoctor_ability1" src="images/heroes/plaguedoctor/ability1.png" style="display:none"/>
+            <img id="img:plaguedoctor_ability2" src="images/heroes/plaguedoctor/ability2.png" style="display:none"/>
+            <img id="img:plaguedoctor_ability3" src="images/heroes/plaguedoctor/ability3.png" style="display:none"/>
+            <img id="img:plaguedoctor_defend" src="images/heroes/plaguedoctor/defend.png" style="display:none"/>
+            <img id="img:icon_plaguedoctor_passive" src="images/abilityicons/plaguedoctor/passive.png" style="display:none" />
+            <img id="img:icon_plaguedoctor_ability1" src="images/abilityicons/plaguedoctor/ability1.png" style="display:none" />
+            <img id="img:icon_plaguedoctor_ability2" src="images/abilityicons/plaguedoctor/ability2.png" style="display:none"/>
+            <img id="img:icon_plaguedoctor_ability3" src="images/abilityicons/plaguedoctor/ability3.png" style="display:none"/>
+
+        <!-- Enemies -->
+            <img id="img:corpse" src="images/enemies/corpse.png" style="display:none"/>
+            <!-- Cultist Brawler -->
+            <img id="img:cultistbrawler_idle" src="images/enemies/cultist_brawler/idle.png" style="display:none"/>
+            <img id="img:cultistbrawler_ability1" src="images/enemies/cultist_brawler/ability1.png" style="display:none"/>
+            <img id="img:cultistbrawler_defend" src="images/enemies/cultist_brawler/defend.png" style="display:none"/>
+
+            <!-- Cultist Witch -->
+            <img id="img:cultistwitch_idle" src="images/enemies/cultist_witch/idle.png" style="display:none"/>
+            <img id="img:cultistwitch_ability1" src="images/enemies/cultist_witch/ability1.png" style="display:none"/>
+            <img id="img:cultistwitch_defend" src="images/enemies/cultist_witch/defend.png" style="display:none"/>
+
+            <!-- Skeleton Soldier -->
+            <img id="img:skeletonsoldier_idle" src="images/enemies/bone_soldier/idle.png" style="display:none"/>
+            <img id="img:skeletonsoldier_ability1" src="images/enemies/bone_soldier/ability1.png" style="display:none"/>
+            <img id="img:skeletonsoldier_defend" src="images/enemies/bone_soldier/defend.png" style="display:none"/>
+
+            <!-- Skeleton Noble -->
+            <img id="img:skeletonnoble_idle" src="images/enemies/bone_courtier/idle.png" style="display:none"/>
+            <img id="img:skeletonnoble_ability1" src="images/enemies/bone_courtier/ability1.png" style="display:none"/>
+            <img id="img:skeletonnoble_defend" src="images/enemies/bone_courtier/defend.png" style="display:none"/>
+
+            <!-- Skeleton Defender -->
+            <img id="img:skeletondefender_idle" src="images/enemies/bone_defender/idle.png" style="display:none"/>
+            <img id="img:skeletondefender_ability1" src="images/enemies/bone_defender/ability1.png" style="display:none"/>
+            <img id="img:skeletondefender_defend" src="images/enemies/bone_defender/defend.png" style="display:none"/>
+
+            <!-- Skeleton Captain -->
+            <img id="img:skeletoncaptain_idle" src="images/enemies/bone_captain/idle.png" style="display:none"/>
+            <img id="img:skeletoncaptain_ability1" src="images/enemies/bone_captain/ability1.png" style="display:none"/>
+            <img id="img:skeletoncaptain_defend" src="images/enemies/bone_captain/defend.png" style="display:none"/>
+
+            <!-- Red Spider -->
+            <img id="img:redspider_idle" src="images/enemies/spider_red/idle.png" style="display:none"/>
+            <img id="img:redspider_ability1" src="images/enemies/spider_red/ability1.png" style="display:none"/>
+            <img id="img:redspider_defend" src="images/enemies/spider_red/defend.png" style="display:none"/>
+
+            <!-- Green Spider -->
+            <img id="img:greenspider_idle" src="images/enemies/spider_green/idle.png" style="display:none"/>
+            <img id="img:greenspider_ability1" src="images/enemies/spider_green/ability1.png" style="display:none"/>
+            <img id="img:greenspider_defend" src="images/enemies/spider_green/defend.png" style="display:none"/>
+
+            <!-- Ghoul -->
+            <img id="img:ghoul_idle" src="images/enemies/ghoul/idle.png" style="display:none"/>
+            <img id="img:ghoul_ability1" src="images/enemies/ghoul/ability1.png" style="display:none"/>
+            <img id="img:ghoul_ability2" src="images/enemies/ghoul/ability1.png" style="display:none"/>
+            <img id="img:ghoul_defend" src="images/enemies/ghoul/defend.png" style="display:none"/>
+
+            <!-- Gargoyle -->
+            <img id="img:gargoyle_idle" src="images/enemies/gargoyle/idle.png" style="display:none"/>
+            <img id="img:gargoyle_ability1" src="images/enemies/gargoyle/ability1.png" style="display:none"/>
+            <img id="img:gargoyle_ability2" src="images/enemies/gargoyle/ability1.png" style="display:none"/>
+            <img id="img:gargoyle_defend" src="images/enemies/gargoyle/defend.png" style="display:none"/>
+
+            <!-- Collector -->
+            <img id="img:collector_idle" src="images/enemies/collector/idle.png" style="display:none"/>
+            <img id="img:collector_ability1" src="images/enemies/collector/ability1.png" style="display:none"/>
+            <img id="img:collector_ability2" src="images/enemies/collector/ability2.png" style="display:none"/>
+            <img id="img:collector_defend" src="images/enemies/collector/defend.png" style="display:none"/>
+
+            <!-- Shambler -->
+            <img id="img:shambler_idle" src="images/enemies/shambler/idle.png" style="display:none"/>
+            <img id="img:shambler_ability1" src="images/enemies/shambler/ability1.png" style="display:none"/>
+            <img id="img:shambler_ability2" src="images/enemies/shambler/ability2.png" style="display:none"/>
+            <img id="img:shambler_ability3" src="images/enemies/shambler/ability3.png" style="display:none"/>
+            <img id="img:shambler_defend" src="images/enemies/shambler/defend.png" style="display:none"/>
+
+            <!-- Shambler Spawn -->
+            <img id="img:shamblerspawn_idle" src="images/enemies/shambler_spawn/idle.png" style="display:none"/>
+            <img id="img:shamblerspawn_ability1" src="images/enemies/shambler_spawn/ability1.png" style="display:none"/>
+            <img id="img:shamblerspawn_ability2" src="images/enemies/shambler_spawn/ability1.png" style="display:none"/>
+            <img id="img:shamblerspawn_defend" src="images/enemies/shambler_spawn/defend.png" style="display:none"/>
+
+            <!-- Necromancer -->
+            <img id="img:necromancer_idle" src="images/enemies/necromancer/idle.png" style="display:none"/>
+            <img id="img:necromancer_ability1" src="images/enemies/necromancer/ability1.png" style="display:none"/>
+            <img id="img:necromancer_ability2" src="images/enemies/necromancer/ability2.png" style="display:none"/>
+            <img id="img:necromancer_ability3" src="images/enemies/necromancer/ability3.png" style="display:none"/>
+            <img id="img:necromancer_defend" src="images/enemies/necromancer/defend.png" style="display:none"/>
+
+        <!-- Effect icons -->
+        <img id="img:crit" src="images/effecticons/crit.png" style="display:none"/>
+        <img id="img:supercrit" src="images/effecticons/supercrit.png" style="display:none"/>
+        <img id="img:dodge" src="images/effecticons/dodge.png" style="display:none"/>
+        <img id="img:superdodge" src="images/effecticons/superdodge.png" style="display:none"/>
+        <img id="img:block" src="images/effecticons/block.png" style="display:none"/>
+        <img id="img:superblock" src="images/effecticons/superblock.png" style="display:none"/>
+        <img id="img:protecting" src="images/effecticons/protectedby.png" style="display:none"/>
+        <img id="img:protectedby" src="images/effecticons/protecting.png" style="display:none"/>
+        <img id="img:stunned" src="images/effecticons/stun.png" style="display:none"/>
+        <img id="img:exposed" src="images/effecticons/exposed.png" style="display:none"/>
+        <img id="img:blind" src="images/effecticons/blind.png" style="display:none"/>
+        <img id="img:rage" src="images/effecticons/rage.png" style="display:none"/>
+        <img id="img:foresight" src="images/effecticons/foresight.png" style="display:none"/>
+        <img id="img:crescendo" src="images/effecticons/crescendo.png" style="display:none"/>
+        <img id="img:deathsDoor" src="images/effecticons/deathsdoor.png" style="display:none"/>
+        <img id="img:hopeless" src="images/effecticons/hopeless.png" style="display:none"/>
+        <img id="img:dazed" src="images/effecticons/dazed.png" style="display:none"/>
+
+        <!--<button id="testButton" class="ddButton">
+            Wonder what this does...
+        </button>-->
+
+        <div id="gameScreen" style="width:100%;display:none">
+            <img id="imgPlayerClass" style="width:50%;float:left">
+            <p id="titlePlayerName" style="text-align:center;padding:0px;margin:0px;font-size:75px"></p>
+            <p id="titlePlayerClass" style="width:100%;text-align:center;padding:0px;margin:0px;font-size:50px"></p><br>
+            <!--<h3 id="hopelessStatus" style="width:100%;text-align:center;color:rgb(165, 41, 41)">Hopeless</h3>-->
+            <div id="playerHP" class="statusBar"></div>
+            <div id="playerStress" class="statusBar"></div>
+            <div id="playerStrength" class="statusBar"></div>
+            <div id="playerEffects" class="statusBar"></div>
+            <p id="playerPosition" style="width:100%;text-align:center;font-size:100px">Position:</p>
+            <div id="playerSips" class="statusBar" style="display:block;width:90%"></div>
+            <button id="drinkSips" class="ddButton" style="font-size:70px">Drink sips</button>
+            <br>
+            <div id="playerMovement" class="movementDiv">
+                <button id="movementUpButton" class="ddButton movementButtonUp" style="font-size:70px">Up</button>
+                <button id="movementLeftButton" class="ddButton movementButtonLeft" style="font-size:70px">Left</button>
+                <button id="movementContinueButton" class="ddButton movementButtonCenter" style="font-size:70px">Continue</button>
+                <button id="movementRightButton" class="ddButton movementButtonRight" style="font-size:70px">Right</button>
+                <button id="movementDownButton" class="ddButton movementButtonDown" style="font-size:70px">Down</button>
+            </div>
+            <div id="playerAbilities" style="width:100%;overflow:auto;text-align:center;padding:2px 16px"></div>
+            <div id="playerItems" style="width:100%;overflow:auto;text-align:center;padding:2px 16px"></div>
+            <h2 style="margin:auto;text-align:center;font-size:small;">
+            Remind yourself that overconfidence is a slow, and insidious killer.
+            </h2>
+        </div>
+
+        <div id="popup" class="modal">
+            <div class="modal-content">
+                <div class="modal-body" style="overflow:auto;text-align:center">
+                    <h2 id="popupText"></h1>
+                    <img id="popupImage" class="imageBar"></img>
+                    <div id="popupItems" class="lootBar"></div>
+                    <h4 id="popupDesc"></h2>
+                    <div id="popupOptions" style="margin:auto;width:100%;text-align:center"></div>
+                    <br>
+                    <button id="cancelPopup" class="ddButton" style="margin-left:25%;width:50%;text-align:center;">Cancel</button>
+                </div>
+            </div>
+        </div>
+    <script src="https://cdn.socket.io/4.8.0/socket.io.min.js" integrity="sha384-OoIbkvzsFFQAG88r+IqMAjyOtYDPGO0cqK5HF5Uosdy/zUEGySeAzytENMDynREd" crossorigin="anonymous"></script>
+    <script type="module">
+        import { ClientGame } from "./modules/Game/ClientGame.mjs"
+        import { Player } from "./modules/Player.mjs";
+        import { Crusader, BountyHunter } from "./modules/Class/Hero.mjs";
+        var lobbyScreen = document.getElementById("lobbyScreen");
+        var draftScreen = document.getElementById("draftScreen");
+        var gameScreen = document.getElementById("gameScreen");
+        var lobbyStatus = document.getElementById("lobbyStatus");
+        var joinButton = document.getElementById("joinButton");
+        var roomID = 0;
+        var playerName = "";
+        var draft_option1 = 0;
+        var draft_option2 = 0;
+        const socket = io();
+        var playerSocket = 0;
+        var game = new ClientGame(socket, roomID);
+
+        function draftHero(choice) {
+            if (choice == 1) {
+                game.playerClass = game.getHeroFromNumber(draft_option1, playerName);
+                socket.emit("player_draft_finish", roomID, playerName, draft_option1);
+            } else {
+                game.playerClass = game.getHeroFromNumber(draft_option2, playerName);
+                socket.emit("player_draft_finish", roomID, playerName, draft_option2);
+            }
+          draftStatus.innerHTML = "Waiting for other players to draft...";
+          draftOption1.style.display = "none";
+          draftOption2.style.display = "none";
+        }
+        window.draftHero = draftHero;
+
+        /*document.getElementById("testButton").addEventListener("click", () => {
+            document.getElementById("testButton").style.display = "none";
+            lobbyScreen.style.display = "none";
+            socket.emit("cheat_setup_player1", socket.id);
+            game.playerClass = new BountyHunter(game, "Jeans", true, 1, socket.id);
+        })
+        socket.on("cheat_room_ID", (roomID) => {
+            game.roomID = roomID;
+        })*/
+
+
+        joinButton.addEventListener("click", () => {
+            playerName = document.getElementById("playerName").value;
+            roomID = document.getElementById("roomCode").value;
+            game.roomID = roomID;
+            socket.emit("player_join_request", playerName, roomID)
+        });
+
+        socket.on("greetings", (msg) => {
+            //socket.emit("player_join_request", (name, roomID));
+        })
+
+        socket.on("player_join_response", (errorCode, message, playerSocketResponse) => {
+            lobbyStatus.innerHTML = message;
+            if (errorCode == 0) {
+                playerSocket = playerSocketResponse;
+                lobbyScreen.style.display = "none";
+            }
+        })
+
+        socket.on("broadcast_player_join", (name, otherPlayerSocket) => {
+            if (playerSocket != otherPlayerSocket) {
+                lobbyStatus.innerHTML += name + " joined."; 
+            }
+        });
+
+        socket.on("all_next_player_to_draft", (bcPlayerName, classesChosen) => {
+            var draftStatus = document.getElementById("draftStatus");
+            var draftOption1 = document.getElementById("draftOption1");
+            var draftOption2 = document.getElementById("draftOption2");
+            lobbyScreen.style.display = "none";
+            gameScreen.style.display = "none";
+            draftScreen.style = "display:block;width=100%";
+            if (playerName == bcPlayerName) {
+            while (!(draft_option1 != 0 && draft_option2 != 0
+                    && draft_option1 != draft_option2
+                    && !classesChosen.includes(draft_option1)
+                    && !classesChosen.includes(draft_option2))) {
+                draft_option1 = 1 + Math.floor(Math.random() * 10);
+                draft_option2 = 1 + Math.floor(Math.random() * 10);
+            }
+            draftStatus.innerHTML = "Choose your hero";
+            draftOption1.style = "display:block;width:50%;float:left";
+            draftOption1.src = "images/draftcards/" + game.heroNames[draft_option1] + ".png";
+            draftOption2.style = "display:block;width:50%;float:left";
+            draftOption2.src = "images/draftcards/" + game.heroNames[draft_option2] + ".png";
+            } else {
+                draftStatus.innerHTML = "Waiting for other players to draft...";
+                draftOption1.style.display = "none";
+                draftOption2.style.display = "none";
+            }
+        });
+
+        socket.on("all_game_begins", (bcPlayerSocket, classesChosen) => {
+            // lobbyScreen.style.display = "none";
+            // draftScreen.style.display = "none";
+            // gameScreen.style.display = "block";
+        });
+
+        socket.on("player_status_update", (newPartyData, newEnemyData, movementStatus, inventory) => {
+            lobbyScreen.style.display = "none";
+            draftScreen.style.display = "none";
+            gameScreen.style.display = "block";
+            game.updateData(newPartyData, newEnemyData, movementStatus, inventory);
+            game.updateGameScreen();
+        });
+
+      	socket.on("host_send_class", (playerNameSent, playerClass) => {
+          if (playerName == playerNameSent) {
+            game.playerClass = game.getHeroFromNumber(playerClass, playerName);
+          }
+        });
+
+        socket.on("host_get_player_response", (popupInfo, options) => {
+            var callbacks = [];
+            for (var i = 0; i < options.length; i++) {
+                callbacks.push(((action) => () => socket.emit("player_send_response", game.roomID, action, playerName))(options[i]));
+            }
+            game.newLocalPopup(popupInfo, options, callbacks, false);
+        });
+
+        socket.on("host_close_popup", (whatever) => {
+            game.clearPopup();
+        })
+    </script>
+    </body>
+</html>

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8" name = "theme-color" content = "#101010">
+        <title>Welcome...</title>
+      	<link rel="stylesheet" type="text/css" href="css/host.css"/>
+    </head>
+    <body>
+      <div id="lobbyScreen">
+        <h2 id="roomCodeDisplay" style="border: 4px solid #fefefe;background-color: black;margin:auto;margin-top:10%;width:20%;text-align:center;padding: 15px 32px;font-size:60px;">
+          Room code: 0
+        </h2>
+        <br><br>
+        <!--<button id="startDraft" class="ddButton">
+          Venture into the dungeon
+        </button>-->
+        <h2 id="playerDisplay" style="border: 4px solid #fefefe;background-color: black;margin:auto;padding: 15px 32px;width:20%;margin:auto;text-align:center">
+          Players:
+        </h2><br>
+      </div>
+      <div id="draftScreen" style="display:none;text-align:left">
+        <h1 id="draftMessage" style="text-align:center"></h1>
+      </div>
+      <div id="gameScreen" style="display:none">
+        <img id="img:backgroundFloor1" src="images/background/floor1.png" style="display:none"/>
+
+        <!-- Room -->
+        <img id="img:room_entrance" src="images/mapicons/room_entrance.png" style="display:none"/>
+        <img id="img:room_unknown"  src="images/mapicons/room_unknown.png" style="display:none"/>
+        <img id="img:room_empty"    src="images/mapicons/room_empty.png" style="display:none"/>
+        <img id="img:room_battle"   src="images/mapicons/room_battle.png" style="display:none"/>
+        <img id="img:room_treasure" src="images/mapicons/room_treasure.png" style="display:none"/>
+        <img id="img:room_altar"   src="images/mapicons/room_altar.png" style="display:none"/>
+        <img id="img:room_key"      src="images/mapicons/room_key.png" style="display:none"/>
+        <img id="img:room_boss"     src="images/mapicons/room_boss.png" style="display:none"/>
+        <img id="img:map_indicator" src="images/mapicons/indicator.png" style="display:none"/>
+
+        <!-- Corridor -->
+        <img id="img:corridor_unknown" src="images/mapicons/hall_dim.png" style="display:none"/>
+        <img id="img:corridor_empty"   src="images/mapicons/hall_clear.png" style="display:none"/>
+        <img id="img:corridor_trap"    src="images/mapicons/marker_trap.png" style="display:none"/>
+        <img id="img:corridor_battle"  src="images/mapicons/marker_battle.png" style="display:none"/>
+        <img id="img:corridor_curio"   src="images/mapicons/marker_curio.png" style="display:none"/>
+        <img id="img:corridor_special" src="images/mapicons/marker_secret.png" style="display:none"/>
+
+        <!-- Heroes -->
+            <!-- Antiquarian -->
+            <img id="img:antiquarian_idle" src="images/heroes/antiquarian/idle.png" style="display:none"/>
+            <img id="img:antiquarian_ability1" src="images/heroes/antiquarian/ability1.png" style="display:none"/>
+            <img id="img:antiquarian_ability2" src="images/heroes/antiquarian/ability2.png" style="display:none"/>
+            <img id="img:antiquarian_ability3" src="images/heroes/antiquarian/ability3.png" style="display:none"/>
+            <img id="img:antiquarian_defend" src="images/heroes/antiquarian/defend.png" style="display:none"/>
+            <img id="img:icon_antiquarian_ability1" src="images/abilityicons/antiquarian/ability1.png" style="display:none" />
+            <img id="img:icon_antiquarian_ability2" src="images/abilityicons/antiquarian/ability2.png" style="display:none"/>
+            <img id="img:icon_antiquarian_ability3" src="images/abilityicons/antiquarian/ability3.png" style="display:none"/>
+
+            <!-- Bounty Hunter -->
+            <img id="img:bountyhunter_idle" src="images/heroes/bountyhunter/idle.png" style="display:none"/>
+            <img id="img:bountyhunter_ability1" src="images/heroes/bountyhunter/ability1.png" style="display:none"/>
+            <img id="img:bountyhunter_ability2" src="images/heroes/bountyhunter/ability2.png" style="display:none"/>
+            <img id="img:bountyhunter_ability3" src="images/heroes/bountyhunter/ability3.png" style="display:none"/>
+            <img id="img:bountyhunter_defend" src="images/heroes/bountyhunter/defend.png" style="display:none"/>
+            <img id="img:icon_bountyhunter_ability1" src="images/abilityicons/bountyhunter/ability1.png" style="display:none" />
+            <img id="img:icon_bountyhunter_ability2" src="images/abilityicons/bountyhunter/ability2.png" style="display:none"/>
+            <img id="img:icon_bountyhunter_ability3" src="images/abilityicons/bountyhunter/ability3.png" style="display:none"/>
+
+            <!-- Crusader -->
+            <img id="img:crusader_idle" src="images/heroes/crusader/idle.png" style="display:none"/>
+            <img id="img:crusader_ability1" src="images/heroes/crusader/ability1.png" style="display:none"/>
+            <img id="img:crusader_ability2" src="images/heroes/crusader/ability2.png" style="display:none"/>
+            <img id="img:crusader_ability3" src="images/heroes/crusader/ability3.png" style="display:none"/>
+            <img id="img:crusader_defend" src="images/heroes/crusader/defend.png" style="display:none"/>
+            <img id="img:icon_crusader_ability1" src="images/abilityicons/crusader/ability1.png" style="display:none" />
+            <img id="img:icon_crusader_ability2" src="images/abilityicons/crusader/ability2.png" style="display:none"/>
+            <img id="img:icon_crusader_ability3" src="images/abilityicons/crusader/ability3.png" style="display:none"/>
+
+            <!-- Grave Robber -->
+            <img id="img:graverobber_idle" src="images/heroes/graverobber/idle.png" style="display:none"/>
+            <img id="img:graverobber_ability1" src="images/heroes/graverobber/ability1.png" style="display:none"/>
+            <img id="img:graverobber_ability2" src="images/heroes/graverobber/ability2.png" style="display:none"/>
+            <img id="img:graverobber_ability3" src="images/heroes/graverobber/ability3.png" style="display:none"/>
+            <img id="img:graverobber_defend" src="images/heroes/graverobber/defend.png" style="display:none"/>
+            <img id="img:icon_graverobber_ability1" src="images/abilityicons/graverobber/ability1.png" style="display:none" />
+            <img id="img:icon_graverobber_ability2" src="images/abilityicons/graverobber/ability2.png" style="display:none"/>
+            <img id="img:icon_graverobber_ability3" src="images/abilityicons/graverobber/ability3.png" style="display:none"/>
+
+            <!-- Hellion -->
+            <img id="img:hellion_idle" src="images/heroes/hellion/idle.png" style="display:none"/>
+            <img id="img:hellion_ability1" src="images/heroes/hellion/ability1.png" style="display:none"/>
+            <img id="img:hellion_ability2" src="images/heroes/hellion/ability2.png" style="display:none"/>
+            <img id="img:hellion_ability3" src="images/heroes/hellion/ability3.png" style="display:none"/>
+            <img id="img:hellion_defend" src="images/heroes/hellion/defend.png" style="display:none"/>
+            <img id="img:icon_hellion_ability1" src="images/abilityicons/hellion/ability1.png" style="display:none" />
+            <img id="img:icon_hellion_ability2" src="images/abilityicons/hellion/ability2.png" style="display:none"/>
+            <img id="img:icon_hellion_ability3" src="images/abilityicons/hellion/ability3.png" style="display:none"/>
+
+            <!-- Jester -->
+            <img id="img:jester_idle" src="images/heroes/jester/idle.png" style="display:none"/>
+            <img id="img:jester_ability1" src="images/heroes/jester/ability1.png" style="display:none"/>
+            <img id="img:jester_ability2" src="images/heroes/jester/ability2.png" style="display:none"/>
+            <img id="img:jester_ability3" src="images/heroes/jester/ability3.png" style="display:none"/>
+            <img id="img:jester_defend" src="images/heroes/jester/defend.png" style="display:none"/>
+            <img id="img:icon_jester_ability1" src="images/abilityicons/jester/ability1.png" style="display:none" />
+            <img id="img:icon_jester_ability2" src="images/abilityicons/jester/ability2.png" style="display:none"/>
+            <img id="img:icon_jester_ability3" src="images/abilityicons/jester/ability3.png" style="display:none"/>
+
+            <!-- Leper -->
+            <img id="img:leper_idle" src="images/heroes/leper/idle.png" style="display:none"/>
+            <img id="img:leper_ability1" src="images/heroes/leper/ability1.png" style="display:none"/>
+            <img id="img:leper_ability2" src="images/heroes/leper/ability2.png" style="display:none"/>
+            <img id="img:leper_ability3" src="images/heroes/leper/ability3.png" style="display:none"/>
+            <img id="img:leper_defend" src="images/heroes/leper/defend.png" style="display:none"/>
+            <img id="img:icon_leper_ability1" src="images/abilityicons/leper/ability1.png" style="display:none" />
+            <img id="img:icon_leper_ability2" src="images/abilityicons/leper/ability2.png" style="display:none"/>
+            <img id="img:icon_leper_ability3" src="images/abilityicons/leper/ability3.png" style="display:none"/>
+
+            <!-- Man-at-Arms -->
+            <img id="img:manatarms_idle" src="images/heroes/manatarms/idle.png" style="display:none"/>
+            <img id="img:manatarms_ability1" src="images/heroes/manatarms/ability1.png" style="display:none"/>
+            <img id="img:manatarms_ability2" src="images/heroes/manatarms/ability2.png" style="display:none"/>
+            <img id="img:manatarms_ability3" src="images/heroes/manatarms/ability3.png" style="display:none"/>
+            <img id="img:manatarms_defend" src="images/heroes/manatarms/defend.png" style="display:none"/>
+            <img id="img:icon_manatarms_ability1" src="images/abilityicons/manatarms/ability1.png" style="display:none" />
+            <img id="img:icon_manatarms_ability2" src="images/abilityicons/manatarms/ability2.png" style="display:none"/>
+            <img id="img:icon_manatarms_ability3" src="images/abilityicons/manatarms/ability3.png" style="display:none"/>
+
+            <!-- Occultist -->
+            <img id="img:occultist_idle" src="images/heroes/occultist/idle.png" style="display:none"/>
+            <img id="img:occultist_ability1" src="images/heroes/occultist/ability1.png" style="display:none"/>
+            <img id="img:occultist_ability2" src="images/heroes/occultist/ability2.png" style="display:none"/>
+            <img id="img:occultist_ability3" src="images/heroes/occultist/ability3.png" style="display:none"/>
+            <img id="img:occultist_defend" src="images/heroes/occultist/defend.png" style="display:none"/>
+            <img id="img:icon_occultist_ability1" src="images/abilityicons/occultist/ability1.png" style="display:none" />
+            <img id="img:icon_occultist_ability2" src="images/abilityicons/occultist/ability2.png" style="display:none"/>
+            <img id="img:icon_occultist_ability3" src="images/abilityicons/occultist/ability3.png" style="display:none"/>
+
+            <!-- Plague Doctor -->
+            <img id="img:plaguedoctor_idle" src="images/heroes/plaguedoctor/idle.png" style="display:none"/>
+            <img id="img:plaguedoctor_ability1" src="images/heroes/plaguedoctor/ability1.png" style="display:none"/>
+            <img id="img:plaguedoctor_ability2" src="images/heroes/plaguedoctor/ability2.png" style="display:none"/>
+            <img id="img:plaguedoctor_ability3" src="images/heroes/plaguedoctor/ability3.png" style="display:none"/>
+            <img id="img:plaguedoctor_defend" src="images/heroes/plaguedoctor/defend.png" style="display:none"/>
+            <img id="img:icon_plaguedoctor_ability1" src="images/abilityicons/plaguedoctor/ability1.png" style="display:none" />
+            <img id="img:icon_plaguedoctor_ability2" src="images/abilityicons/plaguedoctor/ability2.png" style="display:none"/>
+            <img id="img:icon_plaguedoctor_ability3" src="images/abilityicons/plaguedoctor/ability3.png" style="display:none"/>
+
+        <!-- Enemies -->
+            <img id="img:corpse" src="images/enemies/corpse.png" style="display:none"/>
+            <!-- Cultist Brawler -->
+            <img id="img:cultistbrawler_idle" src="images/enemies/cultist_brawler/idle.png" style="display:none"/>
+            <img id="img:cultistbrawler_ability1" src="images/enemies/cultist_brawler/ability1.png" style="display:none"/>
+            <img id="img:cultistbrawler_defend" src="images/enemies/cultist_brawler/defend.png" style="display:none"/>
+
+            <!-- Cultist Witch -->
+            <img id="img:cultistwitch_idle" src="images/enemies/cultist_witch/idle.png" style="display:none"/>
+            <img id="img:cultistwitch_ability1" src="images/enemies/cultist_witch/ability1.png" style="display:none"/>
+            <img id="img:cultistwitch_defend" src="images/enemies/cultist_witch/defend.png" style="display:none"/>
+
+            <!-- Skeleton Soldier -->
+            <img id="img:skeletonsoldier_idle" src="images/enemies/bone_soldier/idle.png" style="display:none"/>
+            <img id="img:skeletonsoldier_ability1" src="images/enemies/bone_soldier/ability1.png" style="display:none"/>
+            <img id="img:skeletonsoldier_defend" src="images/enemies/bone_soldier/defend.png" style="display:none"/>
+
+            <!-- Skeleton Noble -->
+            <img id="img:skeletonnoble_idle" src="images/enemies/bone_courtier/idle.png" style="display:none"/>
+            <img id="img:skeletonnoble_ability1" src="images/enemies/bone_courtier/ability1.png" style="display:none"/>
+            <img id="img:skeletonnoble_defend" src="images/enemies/bone_courtier/defend.png" style="display:none"/>
+
+            <!-- Skeleton Defender -->
+            <img id="img:skeletondefender_idle" src="images/enemies/bone_defender/idle.png" style="display:none"/>
+            <img id="img:skeletondefender_ability1" src="images/enemies/bone_defender/ability1.png" style="display:none"/>
+            <img id="img:skeletondefender_defend" src="images/enemies/bone_defender/defend.png" style="display:none"/>
+
+            <!-- Skeleton Captain -->
+            <img id="img:skeletoncaptain_idle" src="images/enemies/bone_captain/idle.png" style="display:none"/>
+            <img id="img:skeletoncaptain_ability1" src="images/enemies/bone_captain/ability1.png" style="display:none"/>
+            <img id="img:skeletoncaptain_defend" src="images/enemies/bone_captain/defend.png" style="display:none"/>
+
+            <!-- Red Spider -->
+            <img id="img:redspider_idle" src="images/enemies/spider_red/idle.png" style="display:none"/>
+            <img id="img:redspider_ability1" src="images/enemies/spider_red/ability1.png" style="display:none"/>
+            <img id="img:redspider_defend" src="images/enemies/spider_red/defend.png" style="display:none"/>
+
+            <!-- Green Spider -->
+            <img id="img:greenspider_idle" src="images/enemies/spider_green/idle.png" style="display:none"/>
+            <img id="img:greenspider_ability1" src="images/enemies/spider_green/ability1.png" style="display:none"/>
+            <img id="img:greenspider_defend" src="images/enemies/spider_green/defend.png" style="display:none"/>
+
+            <!-- Ghoul -->
+            <img id="img:ghoul_idle" src="images/enemies/ghoul/idle.png" style="display:none"/>
+            <img id="img:ghoul_ability1" src="images/enemies/ghoul/ability1.png" style="display:none"/>
+            <img id="img:ghoul_ability2" src="images/enemies/ghoul/ability2.png" style="display:none"/>
+            <img id="img:ghoul_defend" src="images/enemies/ghoul/defend.png" style="display:none"/>
+
+            <!-- Gargoyle -->
+            <img id="img:gargoyle_idle" src="images/enemies/gargoyle/idle.png" style="display:none"/>
+            <img id="img:gargoyle_ability1" src="images/enemies/gargoyle/ability1.png" style="display:none"/>
+            <img id="img:gargoyle_ability2" src="images/enemies/gargoyle/ability2.png" style="display:none"/>
+            <img id="img:gargoyle_defend" src="images/enemies/gargoyle/defend.png" style="display:none"/>
+
+            <!-- Collector -->
+            <img id="img:collector_idle" src="images/enemies/collector/idle.png" style="display:none"/>
+            <img id="img:collector_ability1" src="images/enemies/collector/ability1.png" style="display:none"/>
+            <img id="img:collector_ability2" src="images/enemies/collector/ability2.png" style="display:none"/>
+            <img id="img:collector_defend" src="images/enemies/collector/defend.png" style="display:none"/>
+
+            <!-- Shambler -->
+            <img id="img:shambler_idle" src="images/enemies/shambler/idle.png" style="display:none"/>
+            <img id="img:shambler_ability1" src="images/enemies/shambler/ability1.png" style="display:none"/>
+            <img id="img:shambler_ability2" src="images/enemies/shambler/ability2.png" style="display:none"/>
+            <img id="img:shambler_ability3" src="images/enemies/shambler/ability3.png" style="display:none"/>
+            <img id="img:shambler_defend" src="images/enemies/shambler/defend.png" style="display:none"/>
+
+            <!-- Shambler Spawn -->
+            <img id="img:shamblerspawn_idle" src="images/enemies/shambler_spawn/idle.png" style="display:none"/>
+            <img id="img:shamblerspawn_ability1" src="images/enemies/shambler_spawn/ability1.png" style="display:none"/>
+            <img id="img:shamblerspawn_ability2" src="images/enemies/shambler_spawn/ability1.png" style="display:none"/>
+            <img id="img:shamblerspawn_defend" src="images/enemies/shambler_spawn/defend.png" style="display:none"/>
+
+            <!-- Necromancer -->
+            <img id="img:necromancer_idle" src="images/enemies/necromancer/idle.png" style="display:none"/>
+            <img id="img:necromancer_ability1" src="images/enemies/necromancer/ability1.png" style="display:none"/>
+            <img id="img:necromancer_ability2" src="images/enemies/necromancer/ability2.png" style="display:none"/>
+            <img id="img:necromancer_ability3" src="images/enemies/necromancer/ability3.png" style="display:none"/>
+            <img id="img:necromancer_defend" src="images/enemies/necromancer/defend.png" style="display:none"/>
+
+        <!-- Effect icons -->
+        <img id="img:crit" src="images/effecticons/crit.png" style="display:none"/>
+        <img id="img:supercrit" src="images/effecticons/supercrit.png" style="display:none"/>
+        <img id="img:dodge" src="images/effecticons/dodge.png" style="display:none"/>
+        <img id="img:superdodge" src="images/effecticons/superdodge.png" style="display:none"/>
+        <img id="img:block" src="images/effecticons/block.png" style="display:none"/>
+        <img id="img:superblock" src="images/effecticons/superblock.png" style="display:none"/>
+        <img id="img:protecting" src="images/effecticons/protectedby.png" style="display:none"/>
+        <img id="img:protectedby" src="images/effecticons/protecting.png" style="display:none"/>
+        <img id="img:stunned" src="images/effecticons/stun.png" style="display:none"/>
+        <img id="img:exposed" src="images/effecticons/exposed.png" style="display:none"/>
+        <img id="img:blind" src="images/effecticons/blind.png" style="display:none"/>
+        <img id="img:rage" src="images/effecticons/rage.png" style="display:none"/>
+        <img id="img:foresight" src="images/effecticons/foresight.png" style="display:none"/>
+        <img id="img:crescendo" src="images/effecticons/crescendo.png" style="display:none"/>
+        <img id="img:deathsDoor" src="images/effecticons/deathsdoor.png" style="display:none"/>
+        <img id="img:hopeless" src="images/effecticons/hopeless.png" style="display:none"/>
+        <img id="img:dazed" src="images/effecticons/dazed.png" style="display:none"/>
+
+        <!-- Music -->
+        <audio style="display:none" id="music:intro" controls loop>
+            <source src="audio/intro.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <audio style="display:none" id="music:explore" controls loop>
+            <source src="audio/explore.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <audio style="display:none" id="music:combat" controls loop>
+            <source src="audio/combat.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <audio style="display:none" id="music:boss" controls loop>
+            <source src="audio/boss.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <audio style="display:none" id="music:victory" controls loop>
+            <source src="audio/victory.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+        <canvas id="mapCanvas" width="1200" height="900" style="margin-left:auto;margin-right:auto;display:none;border:10px solid;border-color:black"></canvas>
+        <div id="keysCollected" style="text-align:center; margin:auto"></div>
+        <!--<canvas id="battleCanvas" width="1200" height="900" style="margin-left:auto;margin-right:auto;display:none;border:10px solid;border-color:black"></canvas>-->
+      </div>
+
+      <div id="popup" class="modal">
+        <div class="modal-content">
+            <div class="modal-body" style="overflow:auto;text-align:center">
+                <h1 id="popupText"></h1>
+                <img id="popupImage" class="imageBar"></img>
+                <div id="popupItems" class="lootBar"></div>
+                <h2 id="popupDesc"></h2>
+                <div id="popupOptions" style="margin:auto;width:100%;text-align:center"></div>
+                <br>
+                <button id="cancelPopup" class="ddButton" style="margin-left:25%;width:50%;text-align:center;">Cancel</button>
+            </div>
+        </div>
+      </div>
+      <!--<button id="testButton" class="ddButton">
+        Wonder what this does...
+      </button>-->
+    <script src="https://cdn.socket.io/4.8.0/socket.io.min.js" integrity="sha384-OoIbkvzsFFQAG88r+IqMAjyOtYDPGO0cqK5HF5Uosdy/zUEGySeAzytENMDynREd" crossorigin="anonymous"></script>
+    <script type="module">
+        //#978754
+        import { io } from "https://cdn.socket.io/4.8.0/socket.io.esm.min.js"
+        import { Player } from "./modules/Player.mjs";
+        import { HostGame } from "./modules/Game/HostGame.mjs";
+        import { Crusader, Leper, Occultist, PlagueDoctor, Antiquarian, GraveRobber, Hellion, BountyHunter } from "./modules/Class/Hero.mjs";
+        import { CultistBrawler, CultistWitch } from "./modules/Class/Enemy.mjs";
+        import { getRandomItem, getItemFromName, HealingVial, HolyWater } from "./modules/Item/Item.mjs"
+        const socket = io();
+        var game = new HostGame(socket, 0);
+
+        socket.on("cheat_setup_player1", (socketID) => {
+            game.players[0] = new BountyHunter(game, "Jeans", true, 1, socketID);
+            document.getElementById("mapCanvas").style.display = "block";
+            game.drawDungeon();
+            game.sendPlayerStatusUpdate();
+        });
+
+
+        // socket.on("player_response_move", (dir, playerName) => {
+
+        // })
+
+        socket.on("greetings", (msg) => {
+            socket.emit("host_setup_request");
+        })
+        socket.on("host_setup_response", (r) => {
+            game.roomID = r;
+            roomCodeDisplay.innerHTML = "Room code: " + r;
+        })
+
+        function startDraft(){
+            socket.emit("host_start_draft_phase", game.roomID);
+            game.clearPopup();
+            lobbyScreen.style.display = "none";
+            gameScreen.style.display = "none";
+            draftScreen.style.display = "block";
+            document.getElementById("draftMessage").innerHTML = game.clients[0].name + " is choosing...";
+        }
+
+        socket.on("broadcast_player_join", (name, socketID) => {
+            game.clients.push(new Player(name, socketID));
+            game.updatePlayerDisplay();
+            if (game.clients.length == 4) {
+                game.playAudio("music:intro");
+                var counter = 10;
+                game.newLocalPopup(
+                    {
+                        header : "Preparing to venture below...",
+                        image : "images/mapicons/indicator.png",
+                        desc : counter.toString()
+                    },
+                    [], [], false
+                )
+                var countdown = setInterval(() => {
+                    if (counter > 0) {
+                        counter -= 1;
+                    }
+                    document.getElementById("popupDesc").innerHTML = counter.toString();
+                }, 1000);
+                setTimeout(() => {
+                    clearInterval(countdown);
+                    startDraft();
+                }, 10000);
+            }
+        });
+
+        socket.on("broadcast_player_left", (socketID) => {
+            /*
+            var playerIndex = game.clients.find((p) => p.socketID == socketID);
+            if (playerIndex != -1) {
+                game.clients.splice(playerIndex,1);
+                game.updatePlayerDisplay();
+            }
+            */
+        });
+
+        socket.on("player_draft_finish", (roomID, playerName, classChosen) => {
+            var newHero = game.getHeroFromNumber(classChosen, playerName)
+            game.players.push(newHero);
+            newHero.rank = game.players.length;
+            var draftSelect = document.createElement("button");
+            draftSelect.style.width = "25%";
+            draftSelect.className = "ddButton";
+            var draftSelectTitle = document.createElement("h2");
+            draftSelectTitle.innerHTML = playerName + ", the " + game.heroNamesCaps[classChosen];
+            var draftSelectImg = document.createElement("img");
+            draftSelectImg.style.width = "100%";
+            draftSelectImg.src = "images/heroes/" + game.heroNames[classChosen] + "/display.png";
+            draftSelect.appendChild(draftSelectTitle);
+            draftSelect.appendChild(draftSelectImg);
+            draftScreen.appendChild(draftSelect);
+            if (game.players.length < 4) {
+                document.getElementById("draftMessage").innerHTML = game.clients[game.players.length].name + " is choosing...";
+            } else {
+                document.getElementById("draftMessage").innerHTML = "Prepare yourselves...";
+            }
+        });
+
+        socket.on("all_game_begins", (bcPlayerSocket, classesChosen) => {
+          	setTimeout(() => {
+              game.playAudio("music:explore");
+              game.startGame();
+              game.drawEnterDungeon();
+              game.sendPlayerStatusUpdate();
+            }, 2000);
+        });
+
+        socket.on("player_use_ability", (playerName, abilityNum, target) => {
+            var currentChar = game.currentChar;
+            if (abilityNum == -1 && !game.inCombat && game.canMove) { // Swap positions
+                var player = game.players.find((p) => p.name == playerName);
+                var tss = player.swapAbility.cast([game.players[target-1]]).targetSummaries;
+                game.updatePositions(tss);
+                game.sendPlayerStatusUpdate();
+
+            } else {
+                if (currentChar.name == playerName && game.inCombat && game.canAct) {
+                    game.canAct = false;
+                    var ability = abilityNum == -1 ? currentChar.swapAbility : (currentChar.isHopeless ? currentChar.h_abilities[abilityNum] : currentChar.abilities[abilityNum]);
+                    if (ability.targetRanks.length == 0) { // Targets enemies
+                        game.runBattleAction(ability.cast([game.players, game.enemies], false));
+                    } else if (ability.targetRanks[0] > 0) { // Targets allies
+                        game.runBattleAction(ability.cast([game.players[target-1]]), false);
+                    } else {
+                        game.runBattleAction(ability.cast([game.enemies[target-1]]), false);
+                    }
+                }
+            }
+        });
+
+        socket.on("player_send_response", (action, playerName) => {
+            game.receivePlayerResponse(action, playerName);
+        })
+
+        socket.on("player_use_item", (playerName, itemName, targetRank) => {
+            var itemIndex = game.inventory.findIndex((i) => i.name == itemName);
+            var playerIndex = game.players.findIndex((p) => p.name == playerName);
+            console.log(game.canMove)
+            console.log(game.inCombat)
+            if (game.canMove && !game.inCombat) { // Usable outside of combat
+                if (itemIndex != -1 && playerIndex != -1 && targetRank != -1) {
+                    var item = game.inventory[itemIndex];
+                    var player = game.players[playerIndex];
+                    var target = undefined;
+                    if (targetRank > 0) {
+                        target = game.players[targetRank-1];
+                    } else {
+                        target = player;
+                    }
+                    game.canMove = false;
+                    game.useItemOutsideCombat(item.use(player, target));
+                    game.inventory.splice(itemIndex, 1);
+                }
+            } else if (game.currentChar != undefined && game.currentChar.name == playerName && game.inCombat) {
+                var currentChar = game.currentChar;
+                if (itemIndex != -1 && playerIndex != -1 && targetRank != -1) {
+                    var item = game.inventory[itemIndex];
+                    var player = game.players[playerIndex];
+                    var target = game.players[targetRank-1];
+                    game.runBattleAction(item.use(player, target), false);
+                    game.inventory.splice(itemIndex, 1);
+                }
+            }
+        });
+
+        socket.on("player_move_room", (playerName, dir) => {
+            game.onPlayerMoveRequest(playerName, dir);
+        })
+
+      	socket.on("player_rejoin_request", (playerName) => {
+            var playerClass = game.players.find((p) => p.name == playerName).id;
+          	socket.emit("host_send_class", game.roomID, playerName, playerClass);
+            setTimeout(game.sendPlayerStatusUpdate, 1000);
+        })
+
+        //document.getElementById("testButton").addEventListener("click", testFeature, false);
+
+        function testFeature() {
+            lobbyScreen.style.display = "none";
+            draftScreen.style.display = "none";
+            gameScreen.style.display = "block";
+            socket.emit("cheat_setup_host");
+            game.generateDungeon();
+            game.enemies = [
+                new CultistBrawler(game, 1),
+            ]
+            var loot = [getRandomItem(game)];
+            for (var i = 0; i < game.players.length; i++) {
+                if (game.players[i].lootBonus()) {
+                    loot.push(getRandomItem(game));
+                }
+            }
+            game.inventory = [new HealingVial(game), new HolyWater(game)];
+            game.battleReward = {battleType : "normal", loot : loot};
+            game.inCombat = true;
+            game.drawBattle();
+            game.updateBattleState();
+        }
+
+        document.getElementById("mapCanvas").addEventListener('click', (event) => {
+            if (false) { // TODO: If map screen is active
+            for (var y = 0; y < 4; y++) {
+                for (var x = 0; x < 4; x++) {
+                var xClick = event.offsetX;
+                var yClick = event.offsetY;
+                var xSquare = 225 + x * 200;
+                var ySquare = 75 + y * 200;
+                var size = 150;
+                if (xClick > xSquare && xClick < xSquare+size
+                    && yClick > ySquare && yClick < ySquare+size) {
+                    var dungeonRoom = y * 4 + x;
+                    if (getAdjacentRooms(game.partyLocation).rooms.includes(dungeonRoom)) {
+                        // TODO: Handle movement
+                        game.partyLocation = dungeonRoom;
+                        drawDungeon();
+                    }
+                }
+                }
+            }
+            }
+        });
+
+        //var startDraftButton = document.getElementById("startDraft");
+
+        // window.startDraft = startDraft;
+
+        // function doNothing() {}
+        // window.doNothing = doNothing;
+
+        // startDraftButton.onclick = function() {
+        //     if (game.clients.length < 4) {
+        //         game.newLocalPopup(
+        //             {
+        //                 header : "Your party is not full.",
+        //                 img : undefined,
+        //                 desc : "Are you sure you wish to continue?<br>It will be a grueling journey..."
+        //             },
+        //             ["It must be so.", "Perhaps not..."],
+        //             [startDraft, doNothing], false
+        //         );
+        //     } else {
+        //         game.newLocalPopup(
+        //             {
+        //                 header : "Prepared to venture below?",
+        //                 img : undefined,
+        //                 desc : "",
+        //             },
+        //             ["We are the flame!", "Not yet."],
+        //             [startDraft, doNothing], false
+        //         );
+        //     }
+        // }
+    </script>
+    </body>
+</html>
