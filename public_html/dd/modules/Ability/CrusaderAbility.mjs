@@ -1,5 +1,5 @@
 import { HGain, HLose, Ability, CombatSummary, TargetSummary } from "./Ability.mjs";
-import { Stunned, Protecting, ProtectedBy } from "../Effect.mjs";
+import { Stunned, Protecting, ProtectedBy } from "../Effect/Effect.mjs";
 
 export class CrusaderPassive extends Ability {
     constructor(owner) {

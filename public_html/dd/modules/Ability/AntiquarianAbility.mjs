@@ -1,5 +1,5 @@
 import { HGain, HLose, Ability, CombatSummary, TargetSummary } from "./Ability.mjs";
-import { Stunned, Exposed, Dodge, Crit, Blind, Foresight } from "../Effect.mjs";
+import { Stunned, Exposed, Dodge, Crit, Blind, Foresight } from "../Effect/Effect.mjs";
 
 export class AntiquarianPassive extends Ability {
     loot_chance = 50;

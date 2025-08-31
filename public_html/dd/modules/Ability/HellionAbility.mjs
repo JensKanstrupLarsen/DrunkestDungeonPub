@@ -1,5 +1,5 @@
 import { HGain, HLose, Ability, CombatSummary, TargetSummary } from "./Ability.mjs";
-import { Stunned, Exposed, Dodge, Crit, Rage } from "../Effect.mjs";
+import { Stunned, Exposed, Dodge, Crit, Rage } from "../Effect/Effect.mjs";
 
 export class HellionPassive extends Ability {
     constructor(owner) {

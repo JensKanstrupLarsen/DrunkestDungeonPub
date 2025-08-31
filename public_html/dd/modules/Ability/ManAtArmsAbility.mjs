@@ -1,5 +1,5 @@
 import { HGain, HLose, Ability, CombatSummary, TargetSummary } from "./Ability.mjs";
-import { Stunned, Exposed, Dodge, Crit, Crescendo, Block, Protecting, ProtectedBy } from "../Effect.mjs";
+import { Stunned, Exposed, Dodge, Crit, Crescendo, Block, Protecting, ProtectedBy } from "../Effect/Effect.mjs";
 import { rollDice } from "../DiceRoll.mjs";
 
 export class ManAtArmsPassive extends Ability {

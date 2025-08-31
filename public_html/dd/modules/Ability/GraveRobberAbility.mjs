@@ -1,5 +1,5 @@
 import { Ability, CombatSummary, TargetSummary, HGain, HLose } from "./Ability.mjs";
-import { Stunned, Exposed, Dodge, Crit, SuperDodge } from "../Effect.mjs";
+import { Stunned, Exposed, Dodge, Crit, SuperDodge } from "../Effect/Effect.mjs";
 
 
 // From the Shadows

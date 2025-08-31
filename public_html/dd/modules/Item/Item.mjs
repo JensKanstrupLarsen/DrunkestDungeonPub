@@ -1,6 +1,6 @@
 import { CombatSummary, createDummyTS, TargetSummary } from "../Ability/Ability.mjs";
 import { getRandomInt, rollDice } from "../DiceRoll.mjs";
-import { Foresight } from "../Effect.mjs";
+import { Foresight } from "../Effect/Effect.mjs";
 
 export class Item {
     name = "";

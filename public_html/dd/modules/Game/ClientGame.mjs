@@ -3,7 +3,7 @@ import { TargetSummary, CombatSummary } from "../Ability/Ability.mjs";
 import { Corpse } from "../Class/Character.mjs";
 import { Game } from "./Game.mjs";
 import { getItemFromName } from "../Item/Item.mjs";
-import { Foresight } from "../Effect.mjs";
+import { Foresight } from "../Effect/Effect.mjs";
 
 export class ClientGame extends Game {
     inventory = [];

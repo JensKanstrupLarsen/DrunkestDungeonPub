@@ -1,5 +1,5 @@
 import { HPower, Ability, CombatSummary, TargetSummary } from "./Ability.mjs";
-import { Stunned, Exposed, Dodge, Crit } from "../Effect.mjs";
+import { Stunned, Exposed, Dodge, Crit } from "../Effect/Effect.mjs";
 
 export class OccultistPassive extends Ability {
     constructor(owner) {

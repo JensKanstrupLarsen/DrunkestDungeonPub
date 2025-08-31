@@ -1,6 +1,6 @@
 import { rollDice } from "../DiceRoll.mjs";
 import { TargetSummary } from "../Ability/Ability.mjs";
-import { Dazed } from "../Effect.mjs";
+import { Dazed } from "../Effect/Effect.mjs";
 
 export class Character {
     name = "";

@@ -10,7 +10,7 @@ import { ManAtArmsAbility1, ManAtArmsAbility2, ManAtArmsAbility3, H_ManAtArmsAbi
 import { OccultistAbility1, OccultistAbility2, OccultistAbility3, H_OccultistAbility1, H_OccultistAbility2, H_OccultistAbility3, OccultistPassive } from "../Ability/OccultistAbility.mjs";
 import { PlagueDoctorAbility1, PlagueDoctorAbility2, PlagueDoctorAbility3, H_PlagueDoctorAbility1, H_PlagueDoctorAbility2, H_PlagueDoctorAbility3, PlagueDoctorPassive } from "../Ability/PlagueDoctorAbility.mjs";
 import { TargetSummary, SwapPosition } from "../Ability/Ability.mjs";
-import { Crit, Dazed, Dodge, Exposed, SuperBlock, SuperDodge } from "../Effect.mjs";
+import { Crit, Dazed, Dodge, Exposed, SuperBlock, SuperDodge } from "../Effect/Effect.mjs";
 
 
 export class PlayerCharacter extends Character {

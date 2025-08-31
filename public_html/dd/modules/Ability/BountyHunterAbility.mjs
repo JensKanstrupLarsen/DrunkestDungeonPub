@@ -1,5 +1,5 @@
 import { HGain, HLose, Ability, CombatSummary, TargetSummary } from "./Ability.mjs";
-import { Stunned, Exposed, Dodge, Crit, Rage, Blind } from "../Effect.mjs";
+import { Stunned, Exposed, Dodge, Crit, Rage, Blind } from "../Effect/Effect.mjs";
 
 export class BountyHunterPassive extends Ability {
     constructor(owner) {

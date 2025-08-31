@@ -1,5 +1,5 @@
 import { HGain, HLose, Ability, CombatSummary, TargetSummary } from "./Ability.mjs";
-import { Stunned, Exposed, Dodge, Crit, Crescendo } from "../Effect.mjs";
+import { Stunned, Exposed, Dodge, Crit, Crescendo } from "../Effect/Effect.mjs";
 
 export class JesterPassive extends Ability {
     constructor(owner) {

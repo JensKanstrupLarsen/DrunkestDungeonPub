@@ -1,5 +1,5 @@
 import { HGain, HLose, Ability, CombatSummary, TargetSummary } from "./Ability.mjs";
-import { Stunned, Exposed, Dodge } from "../Effect.mjs";
+import { Stunned, Exposed, Dodge } from "../Effect/Effect.mjs";
 
 export class PlagueDoctorPassive extends Ability {
     constructor(owner) {

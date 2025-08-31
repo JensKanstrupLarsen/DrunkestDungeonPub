@@ -1,6 +1,6 @@
 import { getRandomInt, rollDice } from "../DiceRoll.mjs";
 import { CombatSummary, TargetSummary, Ability, createDummyTS } from "./Ability.mjs";
-import { Exposed, Blind, Stunned, Dodge, Block, Protecting, ProtectedBy } from "../Effect.mjs";
+import { Exposed, Blind, Stunned, Dodge, Block, Protecting, ProtectedBy } from "../Effect/Effect.mjs";
 import { SkeletonSoldier } from "../Class/Enemy.mjs";
 
 export class EnemyAbility extends Ability {

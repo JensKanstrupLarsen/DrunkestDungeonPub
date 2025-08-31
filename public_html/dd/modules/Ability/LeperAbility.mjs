@@ -1,5 +1,5 @@
 import { HGain, HLose, Ability, CombatSummary, TargetSummary } from "./Ability.mjs";
-import { Blind, SuperCrit, Crit, Stunned, Protecting, ProtectedBy, SuperBlock } from "../Effect.mjs";
+import { Blind, SuperCrit, Crit, Stunned, Protecting, ProtectedBy, SuperBlock } from "../Effect/Effect.mjs";
 
 export class LeperPassive extends Ability {
     constructor(owner) {
